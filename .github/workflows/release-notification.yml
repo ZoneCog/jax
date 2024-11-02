@@ -13,3 +13,4 @@ jobs:
           --data-raw '{
               "text": "Release ${{github.event.release.name}} at ${{github.event.release.published_at}} by ${{github.event.release.author.login}}. <${{github.event.release.url}}|[github]>"
           }'
+
