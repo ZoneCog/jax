@@ -57,6 +57,9 @@ def deserialize_directory(serialized_string, output_directory):
 
   # Extract the tar archive to the output directory
   with tarfile.open(fileobj=io.BytesIO(tar_data), mode="r") as tar:
+    for entry in tar:
+      if os.path.isabs(entry.name) or ".." in entry.name:
+        raise ValueError("Illegal tar archive entry: " + entry.name)
     tar.extractall(output_directory)
 
 
